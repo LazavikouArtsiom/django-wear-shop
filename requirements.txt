@@ -1,0 +1,11 @@
+asgiref==3.2.7
+Django==3.0.7
+django-appconf==1.0.4
+django-filters==0.2.1
+django-imagekit==4.0.2
+django-select-multiple-field==0.4.2
+pilkit==2.0
+Pillow==7.1.2
+pytz==2020.1
+six==1.15.0
+sqlparse==0.3.1
