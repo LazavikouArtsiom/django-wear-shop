@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url({% static 'images/heading-pages-06.jpg' %});">
+		<h2 class="l-text2 t-center">
+			Contact
+		</h2>
+	</section>
+
+
+
+	<!-- content page -->
+	<section class="bgwhite p-t-66 p-b-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-b-30">
+					<div class="p-r-20 p-r-0-lg">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d587.6176391884868!2d30.29215362922897!3d53.90561368882416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d051cc7cfbffff%3A0xa1df431a946e040b!2z0J7QkdCp0JXQltCY0KLQmNCVIE4gNSDQntCQ0J4g0KHQotCg0J7QmdCi0KDQldCh0KIgTiAxMg!5e0!3m2!1sru!2sby!4v1592573110450!5m2!1sru!2sby" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+					</div>
+				</div>
+
+				<div class="col-md-6 p-b-30">
+                    <form id="contactForm" method="post" class='leave-comment'>
+                        {% csrf_token %}
+                        {{ contact_form.as_p }}
+                        <input name="submit" id="submit" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4 w-size25" value="Contact" type="submit">
+                    </form>  
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
