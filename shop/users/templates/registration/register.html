@@ -1,0 +1,16 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+    <div class="wrapper">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                <p>Something wrong with your input</p>
+                {% endif %}
+                
+                {{ form.as_p }}
+                <input name="submit" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4 m-t-20" id="submit" class="btn btn-secondary btn-lg btn-block" value="Create" type="submit" >
+            </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'products/base.html' %}
+{% block content %}
+{% load static %}
+<!-- Product Detail -->
+<div class="container bgwhite p-t-35 p-b-80">
+	<div class="flex-w flex-sb">
+		<form method="POST" action="{% url 'product_detail_change_url' product.category.slug product.slug %}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input name="submit" id="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
+				value="CHANGE" type="submit", style='height: 50px;'>
+		</form>
+		</div>
+	</div>
+
+{% endblock %}
