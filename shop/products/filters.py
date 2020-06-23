@@ -10,7 +10,7 @@ class ProductFilter(django_filters.FilterSet):
 
     COLOR_CHOICES = [(choice.name, choice) for choice in Color.objects.all()]
 
-    # CATEGORY_CHOICES = [(choice.name, choice) for choice in Category.objects.all()]
+    CATEGORY_CHOICES = [(choice.name, choice) for choice in Category.objects.all()]
     
 
     ORDER_CHOICES = (
@@ -30,7 +30,7 @@ class ProductFilter(django_filters.FilterSet):
         ('1', 'with sale'),
     )
 
-    # category = django_filters.ChoiceFilter(label='category', choices=CATEGORY_CHOICES, method='filter_by_category')
+    category = django_filters.ChoiceFilter(label='category', choices=CATEGORY_CHOICES, method='filter_by_category')
     ordering = django_filters.ChoiceFilter(label='ordering', choices=ORDER_CHOICES, method='filter_by_order')
     price = django_filters.ChoiceFilter(label='price', choices=PRICE_CHOICES, method='filter_by_price')
     color = django_filters.ChoiceFilter(label='color', choices=COLOR_CHOICES, method='filter_by_color')

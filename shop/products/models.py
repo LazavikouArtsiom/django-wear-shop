@@ -51,7 +51,9 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('products_list_by_category', kwargs={'category_slug': self.slug,})
+        name = self.__str__().replace(' ', '+')
+        return f'/products/?category={ name }'
+        # return reverse('products_list_by_category', kwargs={'category_slug': self.slug,})
 
 
 class Sale(models.Model):
@@ -120,8 +122,7 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('product_detail', kwargs={'category_slug': self.category.slug, 
-                                                          'slug': self.slug})
+        return reverse('product_detail', kwargs={'slug': self.slug})
     def has_sale(self):
         return self.sale
 

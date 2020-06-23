@@ -13,7 +13,7 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
     class Meta:
-        unique_together = [['user', 'product', 'product', 'size', 'color']]
+        unique_together = [['user', 'product', 'size', 'color']]
 
     def __str__(self):
         return f'{self.user} | {self.product} | {self.size} | {self.color} | {self.quantity}'

@@ -1,6 +1,6 @@
 {% extends 'products/base.html' %}
 {% load static %}
-
+{% load my_tags %}
 
 {% block content %}
 {% if searched_category %}
@@ -26,25 +26,7 @@
 			<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
 				<div class="leftbar p-r-20 p-r-0-sm">
 
-					{% if categories %}
-					<!-- CATEGORIES -->
-					<h4 class="m-text14 p-b-7">
-						Categories
-					</h4>
-
-					<ul class="p-b-54">
-						{% for category in categories %}
-						<li class="p-t-4">
-							<a href="{{ category.get_absolute_url }}" class="s-text13">
-								{{ category.name }}
-							</a>
-						</li>
-						{% endfor %}
-					</ul>
-					{% endif %}
-
 					<!-- FILTER  -->
-
 					<h4 class="m-text14 p-b-32">
 						Filters
 					</h4>
@@ -92,7 +74,7 @@
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<a href="/add_to_cart/{{ product.category.slug }}/{{ product.slug }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+										<a href="/add_to_cart/{{ product.slug }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 											Add to Cart
 										</a>
 									</div>
@@ -123,19 +105,25 @@
 					{% endfor %}
 				</div>
 						
-						
-													
-				<div class="pagination flex-m flex-w p-t-26">
-					{% for product in products.paginator.page_range %}
-						{% if product.number == product %}
-						<a href="?page={{ product }}"
-							class="item-pagination flex-c-m trans-0-4 active-pagination">{{ product }}</a>
-						{% else %}
-							<a href="?page={{ product }}" class="item-pagination flex-c-m trans-0-4 ">{{ product }}</a>
-						{% endif %}
-					{% endfor %}
-				</div>
 				
+				<div class="pagination">
+					<span class="step-links">
+						{% if page_obj.has_previous %}
+							<a href="?{% param_replace page=1 %}">&laquo; first</a>
+							<a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
+						{% endif %}
+				  
+						<span class="current">
+							Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+						</span>
+				  
+						{% if page_obj.has_next %}
+							<a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
+							<a href="?{% param_replace page=page_obj.paginator.num_pages %}">last &raquo;</a>
+						{% endif %}
+					</span>
+				  </div>
+			
 			</div>
 </section>
 {% endblock %}

@@ -3,11 +3,12 @@ from products.models import Product
 from .models import CartItem, Cart, Size, Color
 from time import sleep
 from .decorators import user_authenticated
+from django.db import IntegrityError
 
 @user_authenticated
-def add_to_cart(request, category_slug, slug):
+def add_to_cart(request, slug):
     sleep(1)
-    product = get_object_or_404(Product, slug__iexact=slug, category__slug=category_slug)
+    product = get_object_or_404(Product, slug__iexact=slug)
     user = request.user
 
     if not Cart.objects.filter(user=user).first():
@@ -15,7 +16,6 @@ def add_to_cart(request, category_slug, slug):
     else:
         cart = Cart.objects.get(user=user)
        
-
     if request.POST:
         color_req = request.POST.get('color_choice_field')
         size_req = request.POST.get('size_choice_field')
@@ -27,12 +27,16 @@ def add_to_cart(request, category_slug, slug):
         size = product.size.first()
         quantity = 1
 
-    item = CartItem.objects.create(product=product, color=color, size=size, user=user, quantity=quantity)
+    try:
+        item = CartItem.objects.create(product=product, color=color, size=size, user=user, quantity=quantity)
+        cart.cart_items.add(item)
+    except IntegrityError:
+        pass
 
-    cart.cart_items.add(item)
-    
+    category = product.category.name.replace(' ', '+') 
 
-    return redirect(reverse('products_list_by_category', kwargs={'category_slug': product.category.slug,}))
+    return redirect(f'/products/?category={ category }')
+
 
 @user_authenticated
 def cart_list(request):
