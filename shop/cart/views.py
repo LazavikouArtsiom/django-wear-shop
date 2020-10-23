@@ -35,7 +35,7 @@ def add_to_cart(request, slug):
 
     category = product.category.name.replace(' ', '+') 
 
-    return redirect(f'/products/?category={ category }')
+    return redirect(request.META['HTTP_REFERER'])
 
 
 @user_authenticated
