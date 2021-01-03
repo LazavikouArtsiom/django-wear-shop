@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+
+    {% if form.errors %}
+    <h1>There is smtn wrong with your input</h1>
+    {% endif %}
+
+    {% if next %}
+    <p>You can't access this page</p>
+    {% endif %}
+
+    <div class="center">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+
+
+            <p>Username  {{ form.username }}</p>
+            <p>Password  {{ form.password }}</p>
+
+            <input type="submit" value="login" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+            <a href='/accounts/register/'>
+                <input type="button" value="register" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+            </a>
+        </form>
+    </div>
+    
+    
+{% endblock %}
