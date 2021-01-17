@@ -1,0 +1,15 @@
+{% extends 'cart/base.html' %}
+{% block content %}
+{% load static%}
+
+<div class="orders your-orders-container">
+    {% for order in orders %}
+        <div class="order">
+            <p> id {{ order.id }} </p>
+            <p> {{ order.date_created }}</p>
+            <p> {{ order.status }}</p>
+            <p> {{ order.total_price }}$</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
