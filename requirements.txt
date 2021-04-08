@@ -1,5 +1,5 @@
 asgiref==3.2.7
-Django==3.0.7
+Django==3.0.14
 django-appconf==1.0.4
 django-filters==0.2.1
 django-imagekit==4.0.2
