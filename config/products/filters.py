@@ -18,6 +18,11 @@ class ProductFilter(django_filters.FilterSet):
         ('descending', 'descending'),
     )
 
+    GENDER_CHOICES = (
+        ('men', 'men'),
+        ('woman', 'woman'),
+    )
+
     PRICE_CHOICES = (
         ('from_0_to_50', '$0.00 - $50.00'),
         ('from_50_to_100', '$50.00 - $100.00'),
@@ -32,6 +37,7 @@ class ProductFilter(django_filters.FilterSet):
 
     category = django_filters.ChoiceFilter(label='category', choices=CATEGORY_CHOICES, method='filter_by_category')
     ordering = django_filters.ChoiceFilter(label='ordering', choices=ORDER_CHOICES, method='filter_by_order')
+    gender = django_filters.ChoiceFilter(label='gender', choices=GENDER_CHOICES, method='filter_by_gender')
     price = django_filters.ChoiceFilter(label='price', choices=PRICE_CHOICES, method='filter_by_price')
     color = django_filters.ChoiceFilter(label='color', choices=COLOR_CHOICES, method='filter_by_color')
     size = django_filters.ChoiceFilter(label='size', choices=SIZE_CHOICES, method='filter_by_size')
@@ -47,6 +53,10 @@ class ProductFilter(django_filters.FilterSet):
     def filter_by_order(self, queryset, name, value):
         expression = 'price' if value == 'ascending' else '-price'
         return queryset.order_by(expression)
+
+    def filter_by_gender(self, queryset, name, value):
+        expression = True if value == 'men' else False
+        return queryset.filter(is_man=expression)
 
     def filter_by_price(self, queryset, name, value):
         if value == 'from_0_to_50':

@@ -45,6 +45,8 @@ def cart_list(request):
             request.session['orders'] += f'{str(order.id)};'
         else:
             request.session['orders'] = f'{str(order.id)};'
+
+        return redirect('/orders/')
     else:
         form = OrderCreationForm()
 

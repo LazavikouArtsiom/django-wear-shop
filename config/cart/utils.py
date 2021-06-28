@@ -34,6 +34,7 @@ def add_item_to_session(request, product):
             request.session['cart_items'] += f'{product.slug},{product.color.first()},{product.size.first()},1;'                                        
         return True
 
+
 def get_cart_items(request):
     try:
         cart_items = request.session.get('cart_items', False).split(';')
@@ -134,4 +135,4 @@ def get_orders_list_from_session(request):
         order = Order.objects.filter(id=order_id)
         if order:
             result += order
-    return result
+    return reversed(result)

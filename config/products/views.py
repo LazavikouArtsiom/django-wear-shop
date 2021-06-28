@@ -40,8 +40,6 @@ class ProductFilteredListView(FilteredListView):
     filterset_class = ProductFilter
 
 
-
-
 def products_detail(request, slug):
     product = get_object_or_404(Product, slug__iexact=slug)
     sizes = product.size.all()

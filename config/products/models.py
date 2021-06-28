@@ -90,6 +90,7 @@ class Product(models.Model):
     color = models.ManyToManyField(Color, related_name='color', verbose_name='color',
                                 blank=True)
 
+    is_man = models.BooleanField(default=True)
     sale = models.ForeignKey(Sale, related_name='sale',
                                 null=True, blank=True, verbose_name='sale',
                                 on_delete=models.SET_NULL)

@@ -5,16 +5,17 @@ checkout_button.onclick = function(){
     form = document.getElementById('orderForm')
     li = form.querySelectorAll('li')
     input = form.querySelectorAll('input')
-    console.log(input)
     captcha_0 = document.getElementById('id_captcha_0')
     captcha_1 = document.getElementById('id_captcha_1')
 
     for (var i = 0; i < li.length; i++){
-        if (i > 6 && i != 14){
+        if (i > 6 && i != 14 && i != 15){
            li[i].style.display = 'none'
         }
     }
 
+    captcha_0 = document.getElementById('id_captcha_0')
+    captcha_1 = document.getElementById('id_captcha_1')
 }
 
 id_payment.onclick = function(){
@@ -33,12 +34,13 @@ id_payment.onclick = function(){
     }
     else{
         for (var i = 0; i < li.length; i++){
-            if (i > 6  && i != 14){
+            if (i > 6  && i != 14 && i != 15){
                li[i].style.display = 'none'
                input = li[i].querySelectorAll('input')[0]
                input.required = false
             }
         }
     }
+
 }
 
