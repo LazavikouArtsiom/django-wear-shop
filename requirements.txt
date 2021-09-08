@@ -5,7 +5,7 @@ django-filters==0.2.1
 django-imagekit==4.0.2
 django-select-multiple-field==0.4.2
 pilkit==2.0
-Pillow==7.1.2
+Pillow==8.3.2
 pytz==2020.1
 six==1.15.0
 sqlparse==0.3.1
